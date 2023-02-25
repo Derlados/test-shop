@@ -1,0 +1,81 @@
+.header {
+    width: 100%;
+    justify-content: space-between !important;
+    padding: 15px;
+    border-bottom: 1px solid rgb(191, 191, 191);
+
+    &__logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(238, 200, 10);
+        cursor: pointer;
+    }
+
+    &__actions {
+        cursor: pointer;
+    }
+
+    &__cart-container {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin: 0px 8px;
+    }
+
+    &__cart-amount {
+        position: absolute;
+        bottom: -7px;
+        right: -7px;
+        width: 20px;
+        height: 20px;
+        color: white;
+        background-color: rgb(238, 200, 10);
+        border-radius: 50%;
+        font-size: 14px;
+    }
+
+    &__btn {
+        width: 24px;
+        height: 24px;
+
+    }
+
+    &__account {
+        position: relative;
+        padding: 0px 8px;
+
+        &:hover .header__dropdown {
+            display: block;
+        }
+    }
+
+    &__dropdown {
+        display: none;
+        position: absolute;
+        left: -146px;
+        top: 24px;
+        width: 170px;
+        box-shadow: 0px 0px 5px rgb(180, 180, 180);
+        background-color: white;
+
+        &:hover {
+            display: block;
+        }
+    }
+
+    &__dropdown-item {
+        padding: 10px;
+        border-bottom: 1px solid rgb(191, 191, 191);
+        cursor: pointer;
+        transition: 0.25s;
+
+        &:last-child {
+            margin-bottom: 0px;
+            border-bottom: 0px;
+        }
+
+        &:hover {
+            background-color: rgb(247, 247, 247);
+        }
+    }
+}

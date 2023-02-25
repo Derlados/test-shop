@@ -1,3 +1,20 @@
-<div>
-    ТОВАРЫ
+<div class="items ccc">
+    <div class="items__search-container rlc">
+        <input class="form__field" placeholder="Search ..."/>
+        <div class="form__btn">search</div>
+    </div>
+    <div class="items__grid rlc">
+        <% @items.each do |item|%>
+            <div class='items__item-container ccc'>
+                <%= link_to item_path(item) do %>
+                    <%= image_tag("box.png", :alt => "rss feed", :class => "items__img") %>
+                <% end %>
+                <%= link_to item_path(item) do %>
+                    <div class="items__name"><%= item.name %></div>
+                <% end %>
+                <div class="items__price"><%= item.price %> $</div>
+                <div class="items__btn">Buy</div>
+            </div>
+        <% end %>
+    </div>
 </div>

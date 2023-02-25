@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    root 'items#index'
+    root :to =>  redirect('/items')
 
     resources :items
 end

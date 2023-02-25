@@ -6,10 +6,18 @@
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
         <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+        <%= stylesheet_link_tag "base/app" %>
+        <%= stylesheet_link_tag "base/position" %>
+        <%= stylesheet_link_tag "base/resolutions" %>
+        <%= stylesheet_link_tag "base/form" %>
+        <%= stylesheet_link_tag "components/header" %>
+        <%= stylesheet_link_tag "pages/items" %>
         <%= javascript_importmap_tags %>
     </head>
-    <body>
+    <body class="app cct">
         <%= render "components/header"%>
-        <%= yield %>
+        <div class="app__content">
+            <%= yield %>
+        </div>
     </body>
 </html>

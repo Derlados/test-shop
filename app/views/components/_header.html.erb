@@ -1,1 +1,17 @@
-<div>HEADER</div>
+<div class="header rlc">
+    <div class="header__logo">my-shop</div>
+    <div class="header__actions rlc">
+        <div class="header__cart-container">
+            <%= image_tag("cart.png", :alt => "rss feed", :class => "header__btn") %>
+            <div class="header__cart-amount ccc">5</div>
+        </div>
+        <div class="header__account ccc">
+            <%= image_tag("user.png", :alt => "rss feed", :class => "header__btn") %>
+            <ul class="header__dropdown">
+                <li class="header__dropdown-item">Аккаунт</li>
+                <li class="header__dropdown-item">Заказы</li>
+                <li class="header__dropdown-item">Выйти из аккаунта</li>
+            </ul>
+        </div>
+    </div>
+</div>

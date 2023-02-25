@@ -1,0 +1,37 @@
+.form {
+    &__title {}
+
+    &__block {}
+
+    &__label {}
+
+    &__area {}
+
+    &__field {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid rgb(183, 183, 183);
+    }
+
+    &__error {}
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 100%;
+        background-color: rgb(96, 87, 252);
+        border-radius: 5px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 10px;
+        padding: 5px 15px;
+        cursor: pointer;
+    }
+}
