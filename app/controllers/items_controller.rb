@@ -7,6 +7,10 @@ class ItemsController < ApplicationController
         @item = Item.new 
     end
 
+    def storage
+        @items = Item.all
+    end
+
     def show 
         @item = Item.find(params[:id])
     end
@@ -19,7 +23,7 @@ class ItemsController < ApplicationController
         @item = Item.new(post_params)
 
         if (@item.save)
-            redirect_to @item
+            redirect_to items_storage_path
         else
             render :new, status: 400
         end
@@ -29,7 +33,7 @@ class ItemsController < ApplicationController
         @item = Item.find(params[:id])
 
         if (@item.update(post_params))
-            redirect_to @item
+            redirect_to items_storage_path
         else
             render :edit, status: 400
         end
@@ -39,7 +43,7 @@ class ItemsController < ApplicationController
         @item = Item.find(params[:id])
         @item.destroy 
         
-        redirect_to items_path
+        redirect_to items_storage_path
     end
 
     private

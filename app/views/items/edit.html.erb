@@ -2,24 +2,27 @@
     <h1 class="form__title">Edit item</h1>
     <div class="form__block">
         <div class="form__label">Name:</div>
-        <%= form.text_field(:name, {:class=> 'form__field'}) %>
+        <%= form.text_field(:name, {:class=> 'form__field', :placeholder => 'Input name ...'}) %>
         <% if @item.errors[:name].any? %>
             <div class="form__error">* <%= @item.errors[:name].first%></div>
         <% end %>
     </div>
     <div class="form__block">
         <div class="form__label">Description:</div>
-        <%= form.text_area(:description, {:class=> 'form__area'}) %>
+        <%= form.text_area(:description, {:class=> 'form__area', :placeholder => 'Input description ...'}) %>
         <% if @item.errors[:description].any? %>
             <div class="form__error">* <%= @item.errors[:description].first%></div>
         <% end %>
     </div>
     <div class="form__block">
         <div class="form__label">Price:</div>
-        <%= form.number_field(:price, step: 0.01, min: 0, :class => 'form__field') %>
+        <%= form.number_field(:price, step: 0.01, min: 0, :class => 'form__field', :value => @item.price? ? @item.price : 0) %>
         <% if @item.errors[:price].any? %>
             <div class="form__error">* <%= @item.errors[:price].first%></div>
         <% end %>
     </div>
-    <%= form.submit("Edit item", {:class=> 'form__btn'}) %>
+    <div class="form__btns rlc">
+        <%= form.submit("Edit item", {:class=> 'form__btn'}) %>
+        <%= link_to "Delete item", item_path(@item), data: { turbo_method: :delete }, :class => 'form__btn form__btn_red' %>
+    </div>
 <% end %>

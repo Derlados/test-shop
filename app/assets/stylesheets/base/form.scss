@@ -61,5 +61,13 @@
         &:hover {
             background-color: hsl(243, 78%, 56%);
         }
+
+        &_red {
+            background-color: rgb(255, 92, 92);
+        }
+    }
+
+    &__btns {
+        justify-content: space-between !important;
     }
 }

@@ -1,10 +1,49 @@
 .storage {
+    width: 100%;
 
-    &__title {}
+    &__title {
+        margin-bottom: 25px;
+    }
 
-    &__item {}
+    &__list {}
 
-    &__text {}
+    &__item {
+        justify-content: space-between !important;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        background-color: rgb(246, 246, 246);
+        padding: 10px;
+    }
 
-    &__btn {}
+    &__row-block {
+        display: flex;
+        flex: 1;
+    }
+
+    &__text {
+        margin-right: 50px;
+
+        &:last-child {
+            margin-right: 0px;
+        }
+
+        &_bold {
+            font-weight: bold;
+        }
+    }
+
+    &__btn {
+        font-weight: bold;
+        background-color: rgb(255, 204, 52);
+        color: white;
+        padding: 7px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.25s;
+
+        &:hover {
+            background-color: rgb(231, 181, 31);
+        }
+    }
 }
