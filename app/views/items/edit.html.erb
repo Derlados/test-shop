@@ -1,5 +1,5 @@
-<%= form_for :item, url: items_path do |form| %>
-    <h1 class="form__title">Create item</h1>
+<%= form_for :item, url: item_path(@item), method: :patch do |form| %>
+    <h1 class="form__title">Edit item</h1>
     <div class="form__block">
         <div class="form__label">Name:</div>
         <%= form.text_field(:name, {:class=> 'form__field'}) %>
@@ -21,5 +21,5 @@
             <div class="form__error">* <%= @item.errors[:price].first%></div>
         <% end %>
     </div>
-    <%= form.submit({:class=> 'form__btn'}) %>
+    <%= form.submit("Edit item", {:class=> 'form__btn'}) %>
 <% end %>
