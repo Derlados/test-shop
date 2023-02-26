@@ -8,9 +8,15 @@
         <div class="header__account ccc">
             <%= image_tag("user.png", :alt => "rss feed", :class => "header__btn") %>
             <ul class="header__dropdown">
-                <li class="header__dropdown-item">Аккаунт</li>
-                <li class="header__dropdown-item">Заказы</li>
-                <li class="header__dropdown-item">Выйти из аккаунта</li>
+                <li class="header__dropdown-item">
+                    <%= link_to "Account", personal_path%>
+                </li>
+                <li class="header__dropdown-item">
+                    <%= link_to "Orders", personal_path%>
+                </li>
+                <li class="header__dropdown-item">
+                    <%= link_to "Logout", destroy_user_session_path, 'data-turbo-method': :delete %>
+                </li>
             </ul>
         </div>
     </div>

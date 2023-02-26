@@ -17,7 +17,9 @@
         <%= javascript_importmap_tags %>
     </head>
     <body class="app cct">
-        <%= render "components/header"%>
+        <% if params[:controller] != 'devise/sessions' && params[:controller] != 'devise/registrations' %>
+            <%= render "components/header"%>
+        <%end%>
         <div class="app__content">
             <%= yield %>
         </div>

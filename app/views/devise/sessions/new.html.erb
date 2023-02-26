@@ -1,0 +1,23 @@
+<h2 class="form__title ccc">Log in to my-shop</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form__block">
+        <%= f.label :email, class: "form__label" %>
+        <%= f.email_field :email, autofocus: true, class: "form__field", placeholder: "Please type"  %>
+    </div>
+    <div class="form__block">
+        <%= f.label :password, class: "form__label" %>
+        <%= f.password_field :password, class: "form__field", placeholder: "Please type"  %>
+    </div>
+    <% if devise_mapping.rememberable? %>
+        <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+        </div>
+    <% end %>
+    <div class="form__block ccc">
+        <%= f.submit "Log in", class:"form__btn form__btn_circle form__btn_large" %>
+    </div>
+<% end %>
+<div class="form__block rcc">
+    Haven't registered account yet?&nbsp;<b><%= render "devise/shared/links" %></b>
+</div>
