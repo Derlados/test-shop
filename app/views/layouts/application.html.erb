@@ -10,14 +10,14 @@
         <%= stylesheet_link_tag "base/position" %>
         <%= stylesheet_link_tag "base/resolutions" %>
         <%= stylesheet_link_tag "base/form" %>
+        <%= stylesheet_link_tag "base/table" %>
         <%= stylesheet_link_tag "components/header" %>
         <%= stylesheet_link_tag "pages/items" %>
         <%= stylesheet_link_tag "pages/item" %>
-        <%= stylesheet_link_tag "pages/storage" %>
         <%= javascript_importmap_tags %>
     </head>
     <body class="app cct">
-        <% if params[:controller] != 'devise/sessions' && params[:controller] != 'devise/registrations' %>
+        <% if current_user %>
             <%= render "components/header"%>
         <%end%>
         <div class="app__content">

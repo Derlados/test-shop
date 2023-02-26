@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
+    before_action :is_admin, only: [:storage]
+
     def index
-        @items = Item.all
+        @search = params.has_key?(:search) ? params[:search].downcase : ''; 
+        @search = @search.delete(' ');
+        @items = Item.where("lower(name) LIKE ? ", "%#{@search}%")
     end
 
     def new 
@@ -8,7 +12,9 @@ class ItemsController < ApplicationController
     end
 
     def storage
-        @items = Item.all
+        @search = params.has_key?(:search) ? params[:search].downcase : ''; 
+        @search = @search.delete(' ');
+        @items = Item.where("lower(name) LIKE ? ", "%#{@search}%")
     end
 
     def show 
@@ -20,7 +26,7 @@ class ItemsController < ApplicationController
     end
     
     def create 
-        @item = Item.new(post_params)
+        @item = Item.new(item_params)
 
         if (@item.save)
             redirect_to items_storage_path
@@ -32,7 +38,7 @@ class ItemsController < ApplicationController
     def update 
         @item = Item.find(params[:id])
 
-        if (@item.update(post_params))
+        if (@item.update(item_params))
             redirect_to items_storage_path
         else
             render :edit, status: 400
@@ -48,7 +54,7 @@ class ItemsController < ApplicationController
 
     private
 
-    def post_params 
+    def item_params 
         params.require(:item).permit(:name, :description, :price)
     end
 end

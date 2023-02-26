@@ -1,16 +1,16 @@
 <div class="storage">
-    <h1 class="storage__title">Список товаров в магазине</h1>
-    <ul class="storage__list">
+    <h1 class="table__title">Список товаров в магазине</h1>
+    <ul class="table__list">
         <% @items.each do |item|%>
-            <li class="storage__item rlc">
-                <div class="storage__row-block rlc">
-                    <div class="storage__text storage__text_bold">#<%= item.id %></div>
-                    <div class="storage__text"><%= item.name %></div>
+            <li class="table__item rlc">
+                <div class="table__row-block rlc">
+                    <div class="table__text table__text_bold">#<%= item.id %></div>
+                    <div class="table__text"><%= item.name %></div>
                 </div>
-                <div class="storage__row-block rlc">
-                    <div class="storage__price"><%= item.price %> $</div>
+                <div class="table__row-block rlc">
+                    <div class="table__price"><%= item.price %> $</div>
                 </div>
-                <%= link_to "Редактировать", edit_item_path(item), {class: "storage__btn"} %>
+                <%= link_to "Редактировать", edit_item_path(item), {class: "table__btn"} %>
             </li>
         <% end %>
     </ul>
