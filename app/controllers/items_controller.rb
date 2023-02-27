@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
-    before_action :is_admin, only: [:storage]
+    before_action :is_admin, except: [:index, :show]
 
     def index
-        @search = params.has_key?(:search) ? params[:search].downcase : ''; 
-        @search = @search.delete(' ');
-        @items = Item.where("lower(name) LIKE ? ", "%#{@search}%")
+        @search = params[:search];
+
+        @transformed_search = params.has_key?(:search) ? @search.downcase : ''; 
+        @transformed_search = @transformed_search.delete(' ');
+        @items = Item.where("REPLACE(lower(name), '\s', '') LIKE ? ", "%#{@transformed_search}%")
     end
 
     def new 
@@ -12,9 +14,11 @@ class ItemsController < ApplicationController
     end
 
     def storage
-        @search = params.has_key?(:search) ? params[:search].downcase : ''; 
-        @search = @search.delete(' ');
-        @items = Item.where("lower(name) LIKE ? ", "%#{@search}%")
+        @search = params[:search];
+
+        @transformed_search = params.has_key?(:search) ? @search.downcase : ''; 
+        @transformed_search = @transformed_search.delete(' ');
+        @items = Item.where("lower(name) LIKE ? ", "%#{@transformed_search}%")
     end
 
     def show 

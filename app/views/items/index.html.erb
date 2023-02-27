@@ -1,8 +1,8 @@
 <div class="items ccc">
-    <div class="items__search-container rlc">
-        <input class="form__field" placeholder="Search ..."/>
-        <div class="items__search-btn form__btn">search</div>
-    </div>
+    <%= form_with url: items_path, class: "items__search-container rlc", method: :get do |form| %>
+        <%= form.text_field(:search, {:class=> 'form__field', :placeholder => 'Search...', :value => @search }) %>
+        <input class="items__search-btn form__btn" type="submit" value="Search">
+    <% end %>
     <div class="items__grid rlc">
         <% @items.each do |item|%>
             <div class='items__item-container ccc'>
