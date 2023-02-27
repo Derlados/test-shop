@@ -1,0 +1,44 @@
+.personal-orders {
+
+    &__content {
+        width: 100%;
+        max-height: 0px;
+        transform-origin: top center;
+        transition: 0.25s;
+        overflow: hidden;
+
+        &_open {
+            transition: 1s;
+            max-height: 1000px;
+        }
+    }
+
+    &__items-list {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    &__item {
+        justify-content: space-between !important;
+        width: 100%;
+        margin-top: 10px;
+
+        &:first-child {
+            margin-top: 0px;
+        }
+    }
+
+    &__text {
+        font-size: 18px;
+
+        &_bold {
+            font-weight: bold;
+        }
+    }
+
+    &__footer {
+        justify-content: space-between !important;
+        width: 100%;
+        margin-top: 25px;
+    }
+}

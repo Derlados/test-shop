@@ -21,6 +21,11 @@
         flex: 1;
     }
 
+    &__row-head {
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
     &__text {
         margin-right: 50px;
 
@@ -44,6 +49,17 @@
 
         &:hover {
             background-color: rgb(231, 181, 31);
+        }
+    }
+
+    &__side-arrow {
+        width: 18px;
+        height: 18px;
+        transition: 0.25s;
+        cursor: pointer;
+
+        &_open {
+            transform: rotate(-90deg);
         }
     }
 }

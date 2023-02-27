@@ -14,9 +14,17 @@
         <%= stylesheet_link_tag "components/header" %>
         <%= stylesheet_link_tag "pages/items" %>
         <%= stylesheet_link_tag "pages/item" %>
+        <%= stylesheet_link_tag "pages/personal-orders" %>
+        <%= javascript_include_tag('cart/cart.store.js')%>
+        <%= javascript_include_tag('cart/cart.render.js')%>
+        <%= javascript_include_tag('cart/index.js')%>
         <%= javascript_importmap_tags %>
     </head>
-    <body class="app cct">
+    <body class="app cct" onload="init()">
+        <script>
+            /** Rendering of dynamical data */
+            render()
+        </script>
         <% if current_user %>
             <%= render "components/header"%>
         <%end%>

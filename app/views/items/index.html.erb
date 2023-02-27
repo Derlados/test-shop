@@ -13,7 +13,7 @@
                     <div class="items__name"><%= item.name %></div>
                 <% end %>
                 <div class="items__price"><%= item.price %> $</div>
-                <div class="items__btn">Buy</div>
+                <div class="items__btn" onclick="cart.addToCart(<%= item.id %>)">Buy</div>
             </div>
         <% end %>
     </div>

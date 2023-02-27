@@ -1,0 +1,35 @@
+<%= javascript_include_tag('pages/personal_orders_page.js')%>
+<div class="table">
+    <h1 class="table__title">Список созданных заказов</h1>
+    <ul class="table__list">
+        <li class="table__item clc" >
+            <div class="table__row-head rlc">
+                <div class="table__row-block rlc">
+                    <div class="table__text table__text_bold">Заказ #4554</div>
+                    <div class="table__text">Дата: 24.11.11</div>
+                </div>
+                <div class="table__row-block rlc">
+                    <div class="table__price">Сумма: 3984.95 $</div>
+                </div>
+                <%= image_tag("arrow.png", :alt => "arrow.png", :class => "table__side-arrow",
+                :onClick => "PersonalOrdersPage.toggleOrder(this, 2)".html_safe) %>
+            </div>
+            <div class="personal-orders__content" id="2">
+                <ul class="personal-orders__items-list clc">
+                    <li class="personal-orders__item rlc">
+                        <div class="personal-orders__text">Процессор Ryzen 5 3600 X 5</div>
+                        <div class="personal-orders__text">1999 $</div>
+                    </li>
+                    <li class="personal-orders__item rlc">
+                        <div class="personal-orders__text">Процессор Ryzen 5 3600 X 5</div>
+                        <div class="personal-orders__text">1999 $</div>
+                    </li>
+                </ul>
+                <div class="personal-orders__footer rlc">
+                    <div class="personal-orders__text"><b>Дата заказа:</b> 24.11.11</div>
+                    <div class="personal-orders__text personal-orders__text_bold"><b>Сумма:</b> 3984.95 $</div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

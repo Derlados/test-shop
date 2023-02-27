@@ -8,5 +8,8 @@ Rails.application.routes.draw do
 
     get '/items/storage', to: 'items#storage'
     resources :items
+
     resources :users
+
+    get '/personal/orders', to: 'orders#personal_orders'
 end
