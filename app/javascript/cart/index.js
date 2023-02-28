@@ -1,15 +1,8 @@
-const cartRender = new CartRender();
 const cart = new Cart();
 
-/** Initialize cart data and its render class */
-function init() {
-    cartRender.init();
-    cart.init();
-
-    render();
-}
-
-/** For rerendering dynamical data, after move to a new page */
-function render() {
-    cartRender.render();
-}
+// reload the main page due to possible cart changes
+window.addEventListener('popstate', () => {
+    if (window.location.pathname == '/items' || window.location.pathname == '/checkout') {
+        location.reload();
+    }
+})

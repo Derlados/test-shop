@@ -5,15 +5,17 @@
         <div class="item__desc"><%= @item.description %></div>
         <div class="item__footer rlc">
             <div class="item__price">Price: <%= @item.price %> $</div>
-            <div class="item__actions rlc">
-                <%= form_for :item, url: item_path(@item), method: :patch, html: {class: "item__form rlc"}  do |form| %>
-                    <%# TODO Добавление заказа %>
-                    <%= form.text_field(:name, {:class=> 'item__quantity'}) %>
-                    <%= form.submit("Buy", {:class=> 'form__btn item__btn'}) %>
-                <% end %>
-                <%# <input class="item__quantity" type="number" min="0" max="100" value="1"/>
-                <div class="form__btn item__btn">Buy</div> %>
-            </div>
+            <% if @in_cart %>
+                <div class="form__btn item__cart-btn item__cart-btn_inactive">В корзине</div>
+            <% else %>
+                <div class="item__actions rlc">
+                    <input id="item-quantity" class="item__quantity" type="number" min="0" max="100" value="1"/>
+                    <div id="item-cart-btn" class="form__btn item__cart-btn" 
+                        onclick="cart.addToCart(<%= @item.id %>, 'item-quantity', 'item-cart-btn')">
+                        Купить
+                    </div>
+                </div>
+            <% end %>
         </div>
         <div class="item__error">* Количество должно быть больше 1</div>
     </div>

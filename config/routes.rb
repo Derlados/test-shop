@@ -11,5 +11,12 @@ Rails.application.routes.draw do
 
     resources :users
 
+    # orders
     get '/personal/orders', to: 'orders#personal_orders'
+    get '/checkout', to: 'orders#new'
+
+    # cart
+    post '/cart/items', to: 'cart#add'
+    put '/cart/items/:id', to: 'cart#edit'
+    delete 'cart/items/:id', to: 'cart#delete'
 end

@@ -1,0 +1,54 @@
+<script>
+    document.addEventListener("DOMContentLoaded", () =>{
+        cart.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
+    }, { once: true });
+</script>
+<div class="checkout">
+    <h1 class="checkout__title">Оформление заказа</h1>
+    <div class="checkout__content rlt">
+        <div class="checkout__items-container clc">
+            <div class="checkout__items-title">Список товаров </div>
+            <ul class="checkout__item-list clt">
+                <% @order_items.each do |order_item| %>
+                    <li id="item-block-id" class="checkout__item rlc">
+                        <%= image_tag("box.png", :alt => "box.png", :class => "checkout__img") %>
+                        <div class="checkout__text-block ccc">
+                            <div class="checkout__text"><%= order_item[:item].name %></div>
+                        </div>
+                        <div class="checkout__text-block ccc">
+                            <div class="checkout__text checkout__text_small">Цена</div>
+                            <div class="checkout__text"><%= order_item[:item].price %></div>
+                        </div>
+                        <div class="checkout__text-block ccc">
+                            <div class="checkout__text checkout__text_small">Количество</div>
+                            <input id="<%= order_item[:item].id %>" class="checkout__input checkout__input_invalid" type="number" value="<%= order_item[:quantity] %>" min="0" max="100">
+                        </div>
+                        <div class="checkout__text-block ccc">
+                            <div class="checkout__text checkout__text_small">Сума</div>
+                            <div id="checkout-total-<%= order_item[:item].id %>" class="checkout__text">
+                                <%= '%.2f' % calculate_one(order_item[:item].id) %> $
+                            </div>
+                        </div>
+                        <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>, 'item-block-id')">x</div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="checkout__info clt">
+            <div class="checkout__info-title">Итого</div>
+            <div class="checkout__info-block rlc">
+                <div class="checkout__info-property">Имя: </div>
+                <div class="checkout__info-value"><%= current_user.first_name %></div>
+            </div>
+            <div class="checkout__info-block rlc">
+                <div class="checkout__info-property">Фамилия: </div>
+                <div class="checkout__info-value"><%= current_user.last_name %></div>
+            </div>
+            <div class="checkout__info-block checkout__info-block_total  rlc">
+                <div class="checkout__info-property">К оплате: </div>
+                <div id="checkout-total" class="checkout__info-value checkout__info-value_total"> <%= '%.2f' % @total_price %> $</div>
+            </div>
+            <div class="checkout__accept">Заказ подтверждаю</div>
+        </div>
+    </div>
+</div>

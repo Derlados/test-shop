@@ -1,62 +1,104 @@
 class Cart {
-    _CART_LOCAL_STORAGE = "CART";
+    _BASE_URL = 'http://localhost:3000/cart/items';
+
+
 
     constructor() {
-        this.items = new Map();
-        this.isInit = false;
+        this.cartRenderer = new CartRender();
     }
 
-    init() {
-        if (!this.isInit) {
-            this.restoreFromLocalStorage();
-            this.isInit = true;
-        }
-    }
-
-    getAmountOfItems() {
-        let sumAmount = 0;
-        this.items.forEach((v) => {
-            sumAmount += v;
+    bindAllInputs(itemIds) {
+        console.log("bind");
+        itemIds.forEach(itemId => {
+            const input = document.getElementById(itemId);
+            input.oninput = (event) => {
+                this.onInputChange(input, event, itemId);
+            };
         })
-
-        return sumAmount;
     }
 
-    addToCart(itemId, quantity = 1) {
-        this.items.set(itemId, quantity);
-        this.notifyChanges();
-    }
-
-    onChangeQuantity(itemId, newQuantity) {
-        this.items.set(itemId, newQuantity);
-        this.notifyChanges();
-    }
-
-    deleteFromCart(itemId) {
-        this.items = this.items.filter(i => i.id != itemId)
-        this.notifyChanges();
-    }
-
-    saveToLocalStorage() {
-        localStorage.setItem(this._CART_LOCAL_STORAGE, JSON.stringify(Array.from(this.items)));
-    }
-
-    restoreFromLocalStorage() {
-        if (localStorage.getItem(this._CART_LOCAL_STORAGE)) {
-            this.items = new Map(JSON.parse(localStorage.getItem(this._CART_LOCAL_STORAGE)));
-            cartRender.setAmountOfItems(this.getAmountOfItems())
+    onInputChange(input, event, itemId) {
+        const quantity = event.target.value;
+        if (quantity <= 0) {
+            this.cartRenderer.setRedBorder(input);
+        } else {
+            this.cartRenderer.setDefaultBorder(input);
+            this.changeQuantity(itemId, quantity)
         }
     }
 
-    clear() {
-        this.items = [];
-        localStorage.removeItem(this._CART_LOCAL_STORAGE);
-        this.notifyChanges();
+    async quickAddToCart(itemId, buttonId) {
+        const response = await this._execute(
+            `${this._BASE_URL}`,
+            "POST",
+            { id: itemId, quantity: 1 }
+        );
+
+        if (response.ok) {
+            this.cartRenderer.setButtonPurchased(buttonId);
+
+            const data = await response.json();
+            this.cartRenderer.setNewAmount(data.newAmount)
+        }
     }
 
-    notifyChanges() {
-        this.saveToLocalStorage();
-        cartRender.renderAmountOfItems(this.getAmountOfItems());
+    async addToCart(itemId, inputId, buttonId) {
+        const quantity = Number(document.getElementById(inputId).value);
+
+        const response = await this._execute(
+            `${this._BASE_URL}`,
+            "POST",
+            { id: itemId, quantity: quantity }
+        );
+
+        if (response.ok) {
+            this.cartRenderer.setActionPurchased(inputId, buttonId);
+
+            const data = await response.json();
+            this.cartRenderer.setNewAmount(data.newAmount)
+        }
+    }
+
+    async changeQuantity(itemId, newQuantity) {
+        const response = await this._execute(
+            `${this._BASE_URL}/${itemId}`,
+            "PUT",
+            { quantity: newQuantity }
+        );
+
+        if (response.ok) {
+            const data = await response.json();
+
+            this.cartRenderer.setNewAmount(data.newAmount)
+            this.cartRenderer.updateItemTotal(itemId, data.totalItem);
+            this.cartRenderer.updateTotal(data.total);
+        }
+    }
+
+    async deleteFromCart(itemId, itemElementId) {
+        const response = await this._execute(
+            `${this._BASE_URL}/${itemId}`,
+            "DELETE"
+        );
+
+        if (response.ok) {
+            const data = await response.json();
+            this.cartRenderer.deleteItem(itemElementId);
+
+            this.cartRenderer.setNewAmount(data.newAmount)
+            this.cartRenderer.updateTotal(data.total);
+        }
+    }
+
+    async _execute(url, method, data) {
+        return await fetch(url, {
+            method: method,
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
     }
 }
 

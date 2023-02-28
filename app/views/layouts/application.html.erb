@@ -15,19 +15,16 @@
         <%= stylesheet_link_tag "pages/items" %>
         <%= stylesheet_link_tag "pages/item" %>
         <%= stylesheet_link_tag "pages/personal-orders" %>
+        <%= stylesheet_link_tag "pages/checkout" %>
         <%= javascript_include_tag('cart/cart.store.js')%>
         <%= javascript_include_tag('cart/cart.render.js')%>
         <%= javascript_include_tag('cart/index.js')%>
         <%= javascript_importmap_tags %>
     </head>
-    <body class="app cct" onload="init()">
-        <script>
-            /** Rendering of dynamical data */
-            render()
-        </script>
+    <body class="app cct">
         <% if current_user %>
             <%= render "components/header"%>
-        <%end%>
+        <% end %>
         <div class="app__content">
             <%= yield %>
         </div>

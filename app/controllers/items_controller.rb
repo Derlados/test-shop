@@ -7,6 +7,8 @@ class ItemsController < ApplicationController
         @transformed_search = params.has_key?(:search) ? @search.downcase : ''; 
         @transformed_search = @transformed_search.delete(' ');
         @items = Item.where("REPLACE(lower(name), '\s', '') LIKE ? ", "%#{@transformed_search}%")
+    
+        @cart_items_ids = helpers.get_cart_item_ids;
     end
 
     def new 
@@ -23,6 +25,9 @@ class ItemsController < ApplicationController
 
     def show 
         @item = Item.find(params[:id])
+
+        @cart_items_ids = helpers.get_cart_item_ids;
+        @in_cart = @cart_items_ids.include?(params[:id].to_i)
     end
 
     def edit 
@@ -61,4 +66,6 @@ class ItemsController < ApplicationController
     def item_params 
         params.require(:item).permit(:name, :description, :price)
     end
+
+
 end

@@ -7,13 +7,20 @@
         <% @items.each do |item|%>
             <div class='items__item-container ccc'>
                 <%= link_to item_path(item) do %>
-                    <%= image_tag("box.png", :alt => "rss feed", :class => "items__img") %>
+                    <%= image_tag("box.png", :alt => "box.png", :class => "items__img") %>
                 <% end %>
                 <%= link_to item_path(item) do %>
                     <div class="items__name"><%= item.name %></div>
                 <% end %>
                 <div class="items__price"><%= item.price %> $</div>
-                <div class="items__btn" onclick="cart.addToCart(<%= item.id %>)">Buy</div>
+                <% if @cart_items_ids.include?(item.id)%>
+                    <div class="items__cart-btn items__cart-btn_inactive">В корзине</div>
+                <% else %>
+                    <div id="cart-btn-<%= item.id %>" class="items__cart-btn" 
+                        onclick="cart.quickAddToCart(<%= item.id %>, 'cart-btn-<%= item.id %>')">
+                        Купить
+                    </div>
+                <% end %>
             </div>
         <% end %>
     </div>

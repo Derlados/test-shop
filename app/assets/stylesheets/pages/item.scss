@@ -3,7 +3,7 @@
 
     &__img {
         width: 35%;
-        height: auto;
+        height: 100%;
         margin-right: 25px;
     }
 
@@ -38,7 +38,7 @@
 
 
     &__actions {
-        height: 35px;
+        height: 45px;
     }
 
     &__form {
@@ -55,13 +55,23 @@
         padding: 5px;
     }
 
-    &__btn {
+    &__cart-btn {
         margin-left: 10px;
-        padding: 0px 40px;
+        padding: 10px 40px;
         background-color: rgb(255, 204, 52);
 
         &:hover {
             background-color: rgb(231, 181, 31);
+        }
+
+        &_inactive {
+            color: white;
+            background-color: rgb(50, 50, 50);
+            cursor: default;
+
+            &:hover {
+                background-color: rgb(50, 50, 50);
+            }
         }
     }
 
