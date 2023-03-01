@@ -1,5 +1,5 @@
 class Cart {
-    _BASE_URL = 'http://localhost:3000/cart/items';
+    _BASE_URL = 'https://my-shop.herokuapp.com/cart/items';
 
     constructor() {
         this.cartRenderer = new CartRender();
