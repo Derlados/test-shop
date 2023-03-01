@@ -14,7 +14,7 @@
             <div class="checkout__items-title">Список товаров </div>
             <ul class="checkout__item-list clt">
                 <% @order_items.each do |order_item| %>
-                    <li id="item-block-id" class="checkout__item rlc">
+                    <li id="item-block-<%= order_item[:item].id %>" class="checkout__item rlc">
                         <div class="checkout__item-info rlc">
                             <%= image_tag("box.png", :alt => "box.png", :class => "checkout__img") %>
                             <div class="checkout__text-block ccc">
@@ -36,7 +36,7 @@
                                     <%= '%.2f' % (order_item[:item].price * order_item[:quantity]) %> $
                                 </div>
                             </div>
-                            <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>, 'item-block-id')">x</div>
+                            <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>)">x</div>
                         </div>
                     </li>
                 <% end %>

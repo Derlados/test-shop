@@ -1,5 +1,6 @@
+console.log()
 class Cart {
-    _BASE_URL = 'https://my-shop.herokuapp.com/cart/items';
+    _BASE_URL = `${window.location.origin}/cart/items`;
 
     constructor() {
         this.cartRenderer = new CartRender();
@@ -85,7 +86,7 @@ class Cart {
         }
     }
 
-    async deleteFromCart(itemId, itemElementId) {
+    async deleteFromCart(itemId) {
         const response = await this._execute(
             `${this._BASE_URL}/${itemId}`,
             "DELETE"
@@ -93,7 +94,7 @@ class Cart {
 
         if (response.ok) {
             const data = await response.json();
-            this.cartRenderer.deleteItem(itemElementId);
+            this.cartRenderer.deleteItemBlock(itemId);
 
             this.cartRenderer.setNewAmount(data.newAmount)
             this.cartRenderer.updateTotal(data.total);

@@ -3,6 +3,7 @@ class CartRender {
     _AMOUNT_LABEL_ID = "cart-amount-label-id";
     _CHECKOUT_TOTAL_ID = "checkout-total";
     _CHECKOUT_TOTAL_ITEM_BASE_ID = "checkout-total-";
+    _CHECKOUT_ITEM_BLOCK_BASE_ID = "item-block-";
 
     _PURCHASED_BUTTON_STYLE = "items__cart-btn_inactive";
     _PURCHASED_ITEM_FULL_BUTTON_STYLE = "item__cart-btn_inactive";
@@ -61,8 +62,8 @@ class CartRender {
         }
     }
 
-    deleteItem(itemElementId) {
-        const itemBlockEl = document.getElementById(itemElementId);
+    deleteItemBlock(itemId) {
+        const itemBlockEl = document.getElementById(`${this._CHECKOUT_ITEM_BLOCK_BASE_ID}${itemId}`);
 
         if (itemBlockEl) {
             itemBlockEl.remove();

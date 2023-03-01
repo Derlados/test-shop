@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     end
     
     def personal_orders
-        @orders = Order.where("user_id = ?", current_user.id)
+        @orders = Order.where("user_id = ?", current_user.id).order(created_at: :asc)
     end
 
     def create 
