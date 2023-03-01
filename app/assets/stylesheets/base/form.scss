@@ -64,6 +64,10 @@
         margin-top: 5px;
         font-size: 14px;
         color: red;
+
+        &_large {
+            font-size: 18px;
+        }
     }
 
     &__btn {
@@ -105,6 +109,7 @@
 
     &__btns {
         justify-content: space-between !important;
+        margin-top: 15px;
     }
 
     &__link {

@@ -1,21 +1,21 @@
 <%= form_for :item, url: items_path do |form| %>
-    <h1 class="form__title">Create item</h1>
+    <h1 class="form__title">Добавить новый товар</h1>
     <div class="form__block">
-        <div class="form__label">Name:</div>
-        <%= form.text_field(:name, {:class=> 'form__field', :placeholder => 'Input name ...'}) %>
+        <div class="form__label">Название:</div>
+        <%= form.text_field(:name, {:class=> 'form__field', :placeholder => 'Please type ...'}) %>
         <% if @item.errors[:name].any? %>
             <div class="form__error">* <%= @item.errors[:name].first%></div>
         <% end %>
     </div>
     <div class="form__block">
-        <div class="form__label">Description:</div>
-        <%= form.text_area(:description, {:class=> 'form__area', :placeholder => 'Input description ...'}) %>
+        <div class="form__label">Описание:</div>
+        <%= form.text_area(:description, {:class=> 'form__area', :placeholder => 'Please type ...'}) %>
         <% if @item.errors[:description].any? %>
             <div class="form__error">* <%= @item.errors[:description].first%></div>
         <% end %>
     </div>
     <div class="form__block">
-        <div class="form__label">Price:</div>
+        <div class="form__label">Цена:</div>
         <%= form.number_field(:price, step: 0.01, min: 0, :class => 'form__field', :value => @item.price? ? @item.price : 0) %>
         <% if @item.errors[:price].any? %>
             <div class="form__error">* <%= @item.errors[:price].first%></div>

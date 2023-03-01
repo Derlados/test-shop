@@ -45,10 +45,17 @@ module CartHelper
     def calculate_one(item_id)
         @item = Item.find(item_id)
 
-        puts "#######################################################################################################"
-        puts JSON.generate(get_cart)
         @amount = (get_cart.detect {|ci| ci[0] == item_id})[1]
 
         return '%.2f' % (@item.price * @amount);
     end
+
+    def clear_cart
+        cookies[:CART] = JSON.generate([]);
+    end
+
+    def cart_has_item(item_id)
+        return !(get_cart_item_ids.detect {|id| id == item_id}).nil?
+    end
+
 end

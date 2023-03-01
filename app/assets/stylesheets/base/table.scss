@@ -5,7 +5,9 @@
         margin-bottom: 25px;
     }
 
-    &__list {}
+    &__list {
+        margin-top: 10px;
+    }
 
     &__item {
         justify-content: space-between !important;
@@ -39,16 +41,25 @@
     }
 
     &__btn {
-        font-weight: bold;
         background-color: rgb(255, 204, 52);
-        color: white;
-        padding: 7px 20px;
         border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 7px 20px;
+        text-align: center;
         cursor: pointer;
         transition: 0.25s;
 
         &:hover {
             background-color: rgb(231, 181, 31);
+        }
+
+        &_new {
+            background-color: rgb(0, 161, 0);
+
+            &:hover {
+                background-color: rgb(0, 209, 0);
+            }
         }
     }
 

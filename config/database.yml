@@ -67,5 +67,5 @@ test:
 production:
   <<: *default
   database: test_shop
-  username: root
+  username: postgres
   password: root

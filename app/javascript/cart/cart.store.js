@@ -1,19 +1,23 @@
 class Cart {
     _BASE_URL = 'http://localhost:3000/cart/items';
 
-
-
     constructor() {
         this.cartRenderer = new CartRender();
     }
 
+    /**
+     * Bind all inputs to check onChange event. when user changes amout of items
+     * Input can be deleted, if user deleted item and than returned to chackout page (Turbo Rails renderer problem)
+     * @param {Array} itemIds - array of item ids
+    */
     bindAllInputs(itemIds) {
-        console.log("bind");
         itemIds.forEach(itemId => {
             const input = document.getElementById(itemId);
-            input.oninput = (event) => {
-                this.onInputChange(input, event, itemId);
-            };
+            if (input) {
+                input.oninput = (event) => {
+                    this.onInputChange(input, event, itemId);
+                };
+            }
         })
     }
 
@@ -87,6 +91,10 @@ class Cart {
 
             this.cartRenderer.setNewAmount(data.newAmount)
             this.cartRenderer.updateTotal(data.total);
+
+            if (data.newAmount == 0) {
+                document.location.href = "/";
+            }
         }
     }
 

@@ -1,22 +1,22 @@
 <%= form_for :user, url: user_path(@user), method: :patch do |form| %>
-    <h1 class="form__title">Edit user "<%= @user.first_name + " " + @user.last_name%>"</h1>
+    <h1 class="form__title">Редактирование пользователя "<%= @user.first_name + " " + @user.last_name%>"</h1>
     <div class="form__row rlc">
         <div class="form__block">
-            <div class="form__label">First name:</div>
+            <div class="form__label">Имя:</div>
             <%= form.text_field :first_name, class: "form__field", placeholder: "Please type"  %>
             <% if @user.errors[:first_name].any? %>
                 <div class="form__error">* <%= @user.errors[:first_name].first%></div>
             <% end %>
         </div>
         <div class="form__block">
-            <div class="form__label">Last name:</div>
+            <div class="form__label">Фамилия:</div>
             <%= form.text_field :last_name, class: "form__field", placeholder: "Please type"  %>
             <% if @user.errors[:last_name].any? %>
                 <div class="form__error">* <%= @user.errors[:last_name].first%></div>
             <% end %>
         </div>
         <div class="form__block">
-            <div class="form__label">Role:</div>
+            <div class="form__label">Роль:</div>
             <%= form.select(:role, options_for_select(User.roles, User.roles[@user.role]), {}, { :class => 'form__selector' }) %>
         </div>
     </div>

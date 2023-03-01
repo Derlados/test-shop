@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     # orders
     get '/personal/orders', to: 'orders#personal_orders'
     get '/checkout', to: 'orders#new'
+    post '/orders', to: 'orders#create'
 
     # cart
     post '/cart/items', to: 'cart#add'

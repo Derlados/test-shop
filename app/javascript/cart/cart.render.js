@@ -18,7 +18,7 @@ class CartRender {
 
     updateItemTotal(itemId, newTotalItem) {
         const totalItemEl = document.getElementById(`${this._CHECKOUT_TOTAL_ITEM_BASE_ID}${itemId}`);
-        if (totalEl && totalItemEl) {
+        if (totalItemEl) {
             totalItemEl.innerText = `${newTotalItem} $`;
         }
     }

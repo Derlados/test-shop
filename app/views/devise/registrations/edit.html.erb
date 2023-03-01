@@ -1,13 +1,13 @@
-<h2 class="form__title ccc">Welcome to your account,  <%= @user.first_name + " " + @user.last_name %></h2>
+<h2 class="form__title ccc">Редактирование личных данных </h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="form__row rlc">
         <div class="form__block">
-            <%= f.label :first_name, class: "form__label" %>
+            <%= f.label "Имя", class: "form__label" %>
             <%= f.text_field :first_name, autofocus: true, class: "form__field", placeholder: "Please type"  %>
         </div>
         <div class="form__block">
-            <%= f.label :last_name, class: "form__label" %>
+            <%= f.label "Фамилия", class: "form__label" %>
             <%= f.text_field :last_name, autofocus: true,  class: "form__field", placeholder: "Please type"  %>
         </div>
     </div>
@@ -19,18 +19,18 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
     <div class="form__block">
-        <%= f.label :password, class: "form__label" %> <i>(leave blank if you don't want to change it)</i>
+        <%= f.label "Пароль", class: "form__label" %> <i>(Оставьте пустым если не хотите менять)</i>
         <%= f.password_field :password, autocomplete: "new-password", class: "form__field", placeholder: "Please type" %>
         <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %> characters minimum</em>
+            <em><%= @minimum_password_length %> минимум 6 символов</em>
         <% end %>
     </div>
     <div class="form__block">
-        <%= f.label :password_confirmation, class: "form__label" %>
+        <%= f.label "Подтверждение пароль", class: "form__label" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form__field", placeholder: "Please type" %>
     </div>
     <div class="form__block">
-        <%= f.label :current_password, class: "form__label" %> <i>(we need your current password to confirm your changes)</i>
+        <%= f.label "Текущий пароль", class: "form__label" %> <i>(Нам нужен ваш пароль для подтверждения изменений)</i>
         <%= f.password_field :current_password, autocomplete: "current-password", class: "form__field", placeholder: "Please type" %>
     </div>
     <div class="form__btns rlc">

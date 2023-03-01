@@ -1,9 +1,10 @@
-<div class="table">
+<div class="table clt">
     <h1 class="table__title">Список товаров в магазине</h1>
     <%= form_with url: items_storage_path, class: "items__search-container rlc", method: :get do |form| %>
         <%= form.text_field(:search, {:class=> 'form__field', :placeholder => 'Search...', :value => @search }) %>
         <input class="items__search-btn form__btn" type="submit" value="Search">
     <% end %>
+    <%= link_to "Добавить новый товар", new_item_path, class: "table__btn table__btn_new" %>
     <ul class="table__list">
         <% @items.each do |item|%>
             <li class="table__item rlc">

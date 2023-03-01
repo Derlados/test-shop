@@ -1,5 +1,6 @@
 class CartController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :validate_new_item, only: [:add] 
 
     def add 
         @id = params[:id].to_i
@@ -10,7 +11,7 @@ class CartController < ApplicationController
 
         cookies[:CART] = JSON.generate(@cart_items)
 
-        render json: { newAmount: helpers.get_amount_of_items,  totalItem: helpers.calculate_one(@id),  total: helpers.calculate_total },  status: 200
+        render json: { test: helpers.cart_has_item(params[:id].to_i), newAmount: helpers.get_amount_of_items,  totalItem: helpers.calculate_one(@id),  total: helpers.calculate_total },  status: 200
     end
 
     def edit 
@@ -36,5 +37,12 @@ class CartController < ApplicationController
         render json: { newAmount: helpers.get_amount_of_items,  total: helpers.calculate_total },  status: 200
     end
 
+    private
 
+    def validate_new_item
+        
+        if (helpers.cart_has_item(params[:id].to_i))
+            render json: {message: "in cart already"}, status: 400
+        end
+    end
 end

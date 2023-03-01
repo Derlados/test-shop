@@ -1,7 +1,11 @@
 <script>
-    document.addEventListener("DOMContentLoaded", () =>{
+    if (document.readyState === 'complete') {
         cart.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
-    }, { once: true });
+    } else {
+        document.addEventListener("DOMContentLoaded", () =>{
+            cart.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
+        }, {once: true});
+    }
 </script>
 <div class="checkout">
     <h1 class="checkout__title">Оформление заказа</h1>
@@ -26,7 +30,7 @@
                         <div class="checkout__text-block ccc">
                             <div class="checkout__text checkout__text_small">Сума</div>
                             <div id="checkout-total-<%= order_item[:item].id %>" class="checkout__text">
-                                <%= '%.2f' % calculate_one(order_item[:item].id) %> $
+                                <%= '%.2f' % (order_item[:item].price * order_item[:quantity]) %> $
                             </div>
                         </div>
                         <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>, 'item-block-id')">x</div>
@@ -48,7 +52,23 @@
                 <div class="checkout__info-property">К оплате: </div>
                 <div id="checkout-total" class="checkout__info-value checkout__info-value_total"> <%= '%.2f' % @total_price %> $</div>
             </div>
-            <div class="checkout__accept">Заказ подтверждаю</div>
+            <% if flash[:success] %>
+                <div class="checkout__accept checkout__accept_accepted">Заказано</div>
+            <% else %>
+                <%= form_for :order, url: orders_path do |form| %>
+                    <%= form.submit("Заказ подтверждаю", {:class=> 'checkout__accept'}) %>
+                <% end %>
+            <% end %>
         </div>
     </div>
+    <%# //TODO Эта штука отвратительно работает %>
+    <% if flash[:success] %>
+        <div class="checkout__modal ccc">
+            <div class="checkout__modal-content ccc">
+                <div class="checkout__modal-icon ccc">✔</div>
+                <div class="checkout__modal-text">Успешно офомлено</div>
+                <%= link_to "На главную", root_path, class: "checkout__modal-btn" %>
+            </div>
+        </div>
+    <% end %>
 </div>

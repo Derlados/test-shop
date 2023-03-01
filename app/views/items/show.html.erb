@@ -1,10 +1,10 @@
-<div class="item rlt">
+<div class="item rlt" >
     <%= image_tag("box.png", :alt => "rss feed", :class => "item__img") %>
     <div class="item__info clt">
         <h1 class="item__head"><%= @item.name %></h1>
         <div class="item__desc"><%= @item.description %></div>
         <div class="item__footer rlc">
-            <div class="item__price">Price: <%= @item.price %> $</div>
+            <div class="item__price">Цена: <%= @item.price %> $</div>
             <% if @in_cart %>
                 <div class="form__btn item__cart-btn item__cart-btn_inactive">В корзине</div>
             <% else %>

@@ -56,9 +56,15 @@ class ItemsController < ApplicationController
 
     def destroy 
         @item = Item.find(params[:id])
-        @item.destroy 
-        
-        redirect_to items_storage_path
+
+        begin
+            @item.destroy 
+            redirect_to items_storage_path
+        rescue => e
+            @error = "Текущий товар уже невозможно удалить, так как он уже однажды был обработан"
+            render :edit, status: 422
+        end
+    
     end
 
     private

@@ -21,6 +21,9 @@
             <div class="form__error">* <%= @item.errors[:price].first%></div>
         <% end %>
     </div>
+    <% if @error %>
+        <div class="form__error form__error_large">* <%= @error %></div>
+    <% end %>
     <div class="form__btns rlc">
         <%= form.submit("Edit item", {:class=> 'form__btn'}) %>
         <%= link_to "Delete item", item_path(@item), data: { turbo_method: :delete }, :class => 'form__btn form__btn_red' %>

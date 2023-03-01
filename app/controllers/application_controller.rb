@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!
     before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :clear_cookie #keep cart clear before user auth
 
     protected
   
@@ -15,4 +16,9 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def clear_cookie
+        if (!current_user)
+            helpers.clear_cart
+        end
+    end
 end

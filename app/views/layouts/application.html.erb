@@ -3,6 +3,7 @@
     <head>
         <title>TestShop</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="turbo-cache-control" content="no-cache">
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
         <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -21,12 +22,12 @@
         <%= javascript_include_tag('cart/index.js')%>
         <%= javascript_importmap_tags %>
     </head>
-    <body class="app cct">
+    <body class="app cct" <%= "data-no-turbolinks='false'".html_safe if action_name=="checkout" %>>
         <% if current_user %>
             <%= render "components/header"%>
         <% end %>
         <div class="app__content">
-            <%= yield %>
-        </div>
-    </body>
+        <%= yield %>
+    </div>
+</body>
 </html>
