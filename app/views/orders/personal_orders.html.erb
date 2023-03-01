@@ -2,6 +2,9 @@
 <div class="table">
     <h1 class="table__title">Список созданных заказов</h1>
     <ul class="table__list">
+        <% if @orders.length == 0 %>
+            <li class="personal-orders__empty">У вас пока что не ни одного заказа, смелее сделайте свой первый заказ !</li>
+        <% end %>
         <% @orders.each do |order|%>
             <li class="table__item clc" >
                 <div class="table__row-head rlc">

@@ -1,10 +1,31 @@
 module CartHelper
     def get_cart
-        if (!cookies.has_key?(:CART))
-            cookies[:CART] = JSON.generate([]);
+        if (!cookies.signed[:CART])
+            cookies.signed[:CART] = []
         end
         
-        return JSON.parse(cookies[:CART])
+        return cookies.signed[:CART]
+    end
+
+    def cart_new_item(item_id, quantity)
+        @cart = get_cart
+        @cart.push([item_id, quantity])
+
+        cookies.signed[:CART] = @cart
+    end
+
+    def cart_edit_item(item_id, quantity)
+        @cart = get_cart
+        @cart = @cart.map { |c| c[0] == item_id ?  [item_id, quantity] : c }
+
+        cookies.signed[:CART] = @cart
+    end
+
+    def delete_cart_item(item_id)
+        @cart = get_cart
+        @cart.delete_if {|c| c[0] == item_id } 
+
+        cookies.signed[:CART] = @cart
     end
 
     def get_cart_item_ids
@@ -51,7 +72,7 @@ module CartHelper
     end
 
     def clear_cart
-        cookies[:CART] = JSON.generate([]);
+        cookies.signed[:CART] = []
     end
 
     def cart_has_item(item_id)

@@ -1,4 +1,5 @@
 .personal-orders {
+    &__orders-empty {}
 
     &__content {
         width: 100%;
@@ -12,6 +13,14 @@
             max-height: 1000px;
         }
     }
+
+    &__empty {
+        width: 100%;
+        margin-top: 50px;
+        font-weight: bold;
+        text-align: center;
+    }
+
 
     &__items-list {
         width: 100%;

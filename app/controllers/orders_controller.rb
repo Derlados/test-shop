@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     end
     
     def personal_orders
-        @orders = Order.all
+        @orders = Order.where("user_id = ?", current_user.id)
     end
 
     def create 
