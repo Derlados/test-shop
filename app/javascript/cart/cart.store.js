@@ -47,7 +47,13 @@ class Cart {
     }
 
     async addToCart(itemId, inputId, buttonId) {
-        const quantity = Number(document.getElementById(inputId).value);
+        const inputEl = document.getElementById(inputId);
+        const quantity = Number(inputEl.value);
+
+        if (quantity <= 0) {
+            this.cartRenderer.setRedBorder(inputEl)
+            return;
+        }
 
         const response = await this._execute(
             `${this._BASE_URL}`,

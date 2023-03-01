@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TestShop</title>
+        <title>my-shop</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="turbo-cache-control" content="no-cache">
         <%= csrf_meta_tags %>
@@ -9,10 +9,10 @@
         <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
         <%= stylesheet_link_tag "base/app" %>
         <%= stylesheet_link_tag "base/position" %>
-        <%= stylesheet_link_tag "base/resolutions" %>
         <%= stylesheet_link_tag "base/form" %>
         <%= stylesheet_link_tag "base/table" %>
         <%= stylesheet_link_tag "components/header" %>
+        <%= stylesheet_link_tag "components/footer" %>
         <%= stylesheet_link_tag "pages/items" %>
         <%= stylesheet_link_tag "pages/item" %>
         <%= stylesheet_link_tag "pages/personal-orders" %>
@@ -29,5 +29,8 @@
         <div class="app__content">
         <%= yield %>
     </div>
+    <% if current_user %>
+        <%= render "components/footer"%>
+    <% end %>
 </body>
 </html>

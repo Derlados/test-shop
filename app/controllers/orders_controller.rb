@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
-    before_action :is_not_empty_cart, only: [:new]
+    before_action :is_not_empty_cart, only: [:checkout]
 
-    def new
+    def checkout
+        @cart_items = helpers.get_cart
         @total_price = helpers.calculate_total
         @order_items = []
 

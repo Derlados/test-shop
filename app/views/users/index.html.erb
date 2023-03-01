@@ -11,7 +11,7 @@
                     <div class="table__text table__text_bold">#<%= user.id %></div>
                     <div class="table__text"><%= user.first_name + " " + user.last_name%></div>
                 </div>
-                <div class="table__row-block rlc">
+                <div class="table__row-block table__row-block_small table__low-priority rlc">
                     <div class="table__price"><%= user.role %></div>
                 </div>
                 <%= link_to "Редактировать", edit_user_path(user), {class: "table__btn"} %>

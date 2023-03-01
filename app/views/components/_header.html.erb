@@ -3,12 +3,12 @@
     <div class="header__actions rlc">
         <%= link_to checkout_path do %>
             <div class="header__cart-container">
-                <%= image_tag("cart.png", :alt => "cart.png", :class => "header__btn") %>
+                <div class="header__btn header__btn_cart"></div>
                 <div id="cart-amount-label-id" class="header__cart-amount ccc"><%= get_amount_of_items %></div>
             </div>
         <% end %>
         <div class="header__account ccc">
-            <%= image_tag("user.png", :alt => "user.png", :class => "header__btn") %>
+            <div class="header__btn header__btn_account"></div>
             <ul class="header__dropdown">
                 <li class="header__dropdown-item">
                     <%= link_to "Аккаунт", personal_path%>

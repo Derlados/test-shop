@@ -6,7 +6,7 @@
     <div class="items__grid rlc">
         <% @items.each do |item|%>
             <div class='items__item-container ccc'>
-                <%= link_to item_path(item) do %>
+                <%= link_to item_path(item), class: "items__img-container ccc" do %>
                     <%= image_tag("box.png", :alt => "box.png", :class => "items__img") %>
                 <% end %>
                 <%= link_to item_path(item) do %>

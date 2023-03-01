@@ -8,9 +8,9 @@
         <% @orders.each do |order|%>
             <li class="table__item clc" >
                 <div class="table__row-head rlc">
-                    <div class="table__row-block rlc">
+                    <div class="table__row-block  rlc">
                         <div class="table__text table__text_bold">Заказ #<%= order.id %></div>
-                        <div class="table__text">Дата: <%= order.created_at.strftime("%d.%m.%Y") %></div>
+                        <div class="table__text table__low-priority">Дата: <%= order.created_at.strftime("%d.%m.%Y") %></div>
                     </div>
                     <div class="table__row-block rlc">
                         <div class="table__price">Сумма: <%= order.amount %> $</div>
@@ -21,14 +21,14 @@
                 <div class="personal-orders__content" id=<%= order.id %> >
                     <ul class="personal-orders__items-list clc">
                         <% order.orders_description.each do |order_description| %>
-                            <li class="personal-orders__item rlc">
-                                <div class="personal-orders__text"><%= order_description.item.name %> <i>x <%= order_description.quantity %></i></div>
-                                <div class="personal-orders__text"><%= '%.2f' % (order_description.item.price * order_description.quantity)  %> $</div>
+                            <li class="personal-orders__item rlt">
+                                <div class="personal-orders__text">- <%= order_description.item.name %> <i>x <%= order_description.quantity %></i></div>
+                                <div class="personal-orders__text"><%= '%.2f' % (order_description.item.price * order_description.quantity)  %>&nbsp$</div>
                             </li>
                         <% end %>
                     </ul>
                     <div class="personal-orders__footer rlc">
-                        <div class="personal-orders__text"><b>Дата заказа: </b><%= order.created_at.strftime("%d.%m.%Y %H:%M:%S") %></div>
+                        <div class="personal-orders__text"><b>Дата: </b><%= order.created_at.strftime("%d.%m.%Y %H:%M:%S") %></div>
                         <div class="personal-orders__text personal-orders__text_bold"><b>Сумма:</b> <%= order.amount %> $</div>
                     </div>
                 </div>

@@ -1,8 +1,15 @@
+@import 'variables/resolutions';
+
 .table {
     width: 100%;
 
     &__title {
         margin-bottom: 25px;
+
+        @media (max-width: $mobile-vertical) {
+            font-size: 20px;
+            text-align: center;
+        }
     }
 
     &__list {
@@ -21,6 +28,10 @@
     &__row-block {
         display: flex;
         flex: 1;
+
+        &_small {
+            flex: 0.5;
+        }
     }
 
     &__row-head {
@@ -37,6 +48,10 @@
 
         &_bold {
             font-weight: bold;
+        }
+
+        @media (max-width: $mobile-vertical) {
+            margin-right: 20px;
         }
     }
 
@@ -60,6 +75,18 @@
             &:hover {
                 background-color: rgb(0, 209, 0);
             }
+
+            @media (max-width: $mobile-vertical) {
+                width: 100%;
+                max-width: 100% !important;
+            }
+        }
+
+        @media (max-width: $mobile-vertical) {
+            max-width: 80px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding: 7px 15px;
         }
     }
 
@@ -71,6 +98,12 @@
 
         &_open {
             transform: rotate(-90deg);
+        }
+    }
+
+    &__low-priority {
+        @media (max-width: $mobile-vertical) {
+            display: none;
         }
     }
 }

@@ -12,7 +12,7 @@
                     <div class="table__text table__text_bold">#<%= item.id %></div>
                     <div class="table__text"><%= item.name %></div>
                 </div>
-                <div class="table__row-block rlc">
+                <div class="table__row-block  table__low-priority rlc">
                     <div class="table__price"><%= item.price %> $</div>
                 </div>
                 <%= link_to "Редактировать", edit_item_path(item), {class: "table__btn"} %>

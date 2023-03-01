@@ -38,7 +38,27 @@
     &__btn {
         width: 24px;
         height: 24px;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        background-color: #cccccc;
+        transition: 0.25s;
+        cursor: pointer;
 
+        &:hover {
+            background-color: #bababa;
+        }
+
+        &_cart {
+            mask-image: url(asset_path('user.svg'));
+            -webkit-mask-image: url(asset_path('cart.svg'));
+        }
+
+        &_account {
+            mask-image: url(asset_path('user.svg'));
+            -webkit-mask-image: url(asset_path('user.svg'));
+        }
     }
 
     &__account {

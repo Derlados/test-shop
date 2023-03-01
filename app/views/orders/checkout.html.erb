@@ -15,25 +15,29 @@
             <ul class="checkout__item-list clt">
                 <% @order_items.each do |order_item| %>
                     <li id="item-block-id" class="checkout__item rlc">
-                        <%= image_tag("box.png", :alt => "box.png", :class => "checkout__img") %>
-                        <div class="checkout__text-block ccc">
-                            <div class="checkout__text"><%= order_item[:item].name %></div>
-                        </div>
-                        <div class="checkout__text-block ccc">
-                            <div class="checkout__text checkout__text_small">Цена</div>
-                            <div class="checkout__text"><%= order_item[:item].price %></div>
-                        </div>
-                        <div class="checkout__text-block ccc">
-                            <div class="checkout__text checkout__text_small">Количество</div>
-                            <input id="<%= order_item[:item].id %>" class="checkout__input checkout__input_invalid" type="number" value="<%= order_item[:quantity] %>" min="0" max="100">
-                        </div>
-                        <div class="checkout__text-block ccc">
-                            <div class="checkout__text checkout__text_small">Сума</div>
-                            <div id="checkout-total-<%= order_item[:item].id %>" class="checkout__text">
-                                <%= '%.2f' % (order_item[:item].price * order_item[:quantity]) %> $
+                        <div class="checkout__item-info rlc">
+                            <%= image_tag("box.png", :alt => "box.png", :class => "checkout__img") %>
+                            <div class="checkout__text-block ccc">
+                                <div class="checkout__text"><%= order_item[:item].name %></div>
                             </div>
                         </div>
-                        <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>, 'item-block-id')">x</div>
+                        <div class="checkout__item-actions rlc">
+                            <div class="checkout__text-block ccc">
+                                <div class="checkout__text checkout__text_small">Цена</div>
+                                <div class="checkout__text"><%= order_item[:item].price %></div>
+                            </div>
+                            <div class="checkout__text-block ccc">
+                                <div class="checkout__text checkout__text_small">Количество</div>
+                                <input id="<%= order_item[:item].id %>" class="checkout__input checkout__input_invalid" type="number" value="<%= order_item[:quantity] %>" min="0" max="100">
+                            </div>
+                            <div class="checkout__text-block ccc">
+                                <div class="checkout__text checkout__text_small">Сума</div>
+                                <div id="checkout-total-<%= order_item[:item].id %>" class="checkout__text">
+                                    <%= '%.2f' % (order_item[:item].price * order_item[:quantity]) %> $
+                                </div>
+                            </div>
+                            <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>, 'item-block-id')">x</div>
+                        </div>
                     </li>
                 <% end %>
             </ul>

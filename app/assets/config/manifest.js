@@ -6,3 +6,4 @@
 //= link_directory ../stylesheets/base .css
 //= link_directory ../stylesheets/pages .css
 //= link_directory ../stylesheets/components .css
+//= link_directory ../stylesheets/variables .css

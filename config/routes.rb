@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
     # orders
     get '/personal/orders', to: 'orders#personal_orders'
-    get '/checkout', to: 'orders#new'
+    get '/checkout', to: 'orders#checkout'
     post '/orders', to: 'orders#create'
 
     # cart
