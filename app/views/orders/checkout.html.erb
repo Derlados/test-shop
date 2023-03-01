@@ -1,9 +1,9 @@
 <script>
     if (document.readyState === 'complete') {
-        cart.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
+        checkout.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
     } else {
         document.addEventListener("DOMContentLoaded", () =>{
-            cart.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
+            checkout.bindAllInputs(JSON.parse("<%= get_cart_item_ids %>"))
         }, {once: true});
     }
 </script>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="checkout__text-block ccc">
                                 <div class="checkout__text checkout__text_small">Количество</div>
-                                <input id="<%= order_item[:item].id %>" class="checkout__input checkout__input_invalid" type="number" value="<%= order_item[:quantity] %>" min="0" max="100">
+                                <input id="<%= order_item[:item].id %>" class="checkout__input checkout__input_invalid" type="number" value="<%= order_item[:quantity] %>" min="1" max="100">
                             </div>
                             <div class="checkout__text-block ccc">
                                 <div class="checkout__text checkout__text_small">Сума</div>
@@ -36,7 +36,7 @@
                                     <%= '%.2f' % (order_item[:item].price * order_item[:quantity]) %> $
                                 </div>
                             </div>
-                            <div class="checkout__delete-btn" onclick="cart.deleteFromCart(<%= order_item[:item].id %>)">x</div>
+                            <div class="checkout__delete-btn" onclick="checkout.onDeleteItem(<%= order_item[:item].id %>)">x</div>
                         </div>
                     </li>
                 <% end %>

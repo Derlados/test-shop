@@ -1,4 +1,3 @@
-console.log()
 class Cart {
     _BASE_URL = `${window.location.origin}/cart/items`;
 
@@ -6,33 +5,7 @@ class Cart {
         this.cartRenderer = new CartRender();
     }
 
-    /**
-     * Bind all inputs to check onChange event. when user changes amout of items
-     * Input can be deleted, if user deleted item and than returned to chackout page (Turbo Rails renderer problem)
-     * @param {Array} itemIds - array of item ids
-    */
-    bindAllInputs(itemIds) {
-        itemIds.forEach(itemId => {
-            const input = document.getElementById(itemId);
-            if (input) {
-                input.oninput = (event) => {
-                    this.onInputChange(input, event, itemId);
-                };
-            }
-        })
-    }
-
-    onInputChange(input, event, itemId) {
-        const quantity = event.target.value;
-        if (quantity <= 0) {
-            this.cartRenderer.setRedBorder(input);
-        } else {
-            this.cartRenderer.setDefaultBorder(input);
-            this.changeQuantity(itemId, quantity)
-        }
-    }
-
-    async quickAddToCart(itemId, buttonId) {
+    async quickAddToCart(itemId) {
         const response = await this._execute(
             `${this._BASE_URL}`,
             "POST",
@@ -40,22 +13,14 @@ class Cart {
         );
 
         if (response.ok) {
-            this.cartRenderer.setButtonPurchased(buttonId);
-
             const data = await response.json();
             this.cartRenderer.setNewAmount(data.newAmount)
+        } else {
+            throw new Error('request failed');
         }
     }
 
-    async addToCart(itemId, inputId, buttonId) {
-        const inputEl = document.getElementById(inputId);
-        const quantity = Number(inputEl.value);
-
-        if (quantity <= 0) {
-            this.cartRenderer.setRedBorder(inputEl)
-            return;
-        }
-
+    async addToCart(itemId, quantity) {
         const response = await this._execute(
             `${this._BASE_URL}`,
             "POST",
@@ -63,10 +28,10 @@ class Cart {
         );
 
         if (response.ok) {
-            this.cartRenderer.setActionPurchased(inputId, buttonId);
-
             const data = await response.json();
             this.cartRenderer.setNewAmount(data.newAmount)
+        } else {
+            throw new Error('request failed');
         }
     }
 
@@ -79,10 +44,10 @@ class Cart {
 
         if (response.ok) {
             const data = await response.json();
-
             this.cartRenderer.setNewAmount(data.newAmount)
-            this.cartRenderer.updateItemTotal(itemId, data.totalItem);
-            this.cartRenderer.updateTotal(data.total);
+            return data;
+        } else {
+            throw new Error('request failed');
         }
     }
 
@@ -94,14 +59,15 @@ class Cart {
 
         if (response.ok) {
             const data = await response.json();
-            this.cartRenderer.deleteItemBlock(itemId);
-
             this.cartRenderer.setNewAmount(data.newAmount)
-            this.cartRenderer.updateTotal(data.total);
 
             if (data.newAmount == 0) {
                 document.location.href = "/";
             }
+
+            return data;
+        } else {
+            throw new Error('request failed');
         }
     }
 
@@ -117,3 +83,4 @@ class Cart {
     }
 }
 
+const cart = new Cart();

@@ -2,7 +2,24 @@
 
 .form {
 
+    &_center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: calc(100vh - 50px);
+    }
+
+    &__card {
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0px 0px 10px gray;
+        background-color: white;
+        background-color: ghostwhite;
+    }
+
     &__container {
+
         &_small {
             max-width: 900px;
         }
@@ -13,6 +30,15 @@
         font-weight: bold;
         margin-bottom: 30px;
         text-align: center;
+
+        @media (max-width: $mobile-vertical) {
+            font-size: 22px;
+        }
+
+
+        @media (max-width: $mobile-mini) {
+            font-size: 18px;
+        }
     }
 
     &__row {
@@ -27,12 +53,21 @@
         &:last-child {
             margin: 0px 0px 20px 0px;
         }
+
+        @media (max-width: $mobile-vertical) {
+            margin: 0px 10px 20px 0px;
+        }
+
     }
 
     &__label {
         display: inline-block;
         font-size: 18px;
         margin-bottom: 7px;
+
+        @media (max-width: $mobile-vertical) {
+            font-size: 16px;
+        }
     }
 
     &__area {
@@ -85,7 +120,6 @@
         }
     }
 
-
     &__btn {
         display: flex;
         justify-content: center;
@@ -122,13 +156,29 @@
             padding: 15px 45px;
         }
 
-        @media (max-width: $mobile-vertical) {
-            padding: 5px;
-            width: 100%;
+        &_mobile-full-width {
+            @media (max-width: $mobile-vertical) {
+                padding: 5px;
+                width: 100%;
+            }
         }
     }
 
     &__link {
         font-weight: bold;
     }
+
+    &__text {
+        &_small {
+            font-size: 16px;
+
+            @media (max-width: $mobile-vertical) {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.new_user {
+    width: 100%;
 }

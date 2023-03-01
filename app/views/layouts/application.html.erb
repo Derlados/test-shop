@@ -7,19 +7,12 @@
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
         <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-        <%= stylesheet_link_tag "base/app" %>
-        <%= stylesheet_link_tag "base/position" %>
-        <%= stylesheet_link_tag "base/form" %>
-        <%= stylesheet_link_tag "base/table" %>
-        <%= stylesheet_link_tag "components/header" %>
-        <%= stylesheet_link_tag "components/footer" %>
-        <%= stylesheet_link_tag "pages/items" %>
-        <%= stylesheet_link_tag "pages/item" %>
-        <%= stylesheet_link_tag "pages/personal-orders" %>
-        <%= stylesheet_link_tag "pages/checkout" %>
-        <%= javascript_include_tag('cart/cart.store.js')%>
         <%= javascript_include_tag('cart/cart.render.js')%>
-        <%= javascript_include_tag('cart/index.js')%>
+        <%= javascript_include_tag('cart/cart.store.js')%>
+        <%= javascript_include_tag('pages/items.page.js')%>
+        <%= javascript_include_tag('pages/item-full-info.page.js')%>
+        <%= javascript_include_tag('pages/checkout.page.js')%>
+        <%= javascript_include_tag('pages/personal-orders.page.js')%>
         <%= javascript_importmap_tags %>
     </head>
     <body class="app cct" <%= "data-no-turbolinks='false'".html_safe if action_name=="checkout" %>>

@@ -11,7 +11,7 @@
                 <div class="item__actions rlc">
                     <input id="item-quantity" class="item__quantity" type="number" min="0" max="100" value="1"/>
                     <div id="item-cart-btn" class="form__btn item__cart-btn" 
-                        onclick="cart.addToCart(<%= @item.id %>, 'item-quantity', 'item-cart-btn')">
+                        onclick="itemFullInfo.onAddToCart(<%= @item.id %>, 'item-quantity', 'item-cart-btn')">
                         Купить
                     </div>
                 </div>

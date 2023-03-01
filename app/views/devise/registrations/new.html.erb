@@ -1,35 +1,39 @@
-<h2 class="form__title ccc">Sign up to my-shop</h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <div class="form__row rlc">
-        <div class="form__block">
-            <%= f.label :first_name, class: "form__label" %>
-            <%= f.text_field :first_name, autofocus: true, class: "form__field", placeholder: "Please type"  %>
+<div class="form form_center">
+    <div class="form__card">
+        <h2 class="form__title ccc">Регистрация в системе my-shop</h2>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="form__row rlc">
+                <div class="form__block">
+                    <%= f.label "Имя", class: "form__label" %>
+                    <%= f.text_field :first_name, autofocus: true, class: "form__field", placeholder: "Please type"  %>
+                </div>
+                <div class="form__block">
+                    <%= f.label "Фамилия", class: "form__label" %>
+                    <%= f.text_field :last_name, autofocus: true,  class: "form__field", placeholder: "Please type"  %>
+                </div>
+            </div>
+            <div class="form__block">
+                <%= f.label :email, class: "form__label" %>
+                <%= f.email_field :email, autofocus: true, class: "form__field", placeholder: "Please type"  %>
+            </div>
+            <div class="form__block">
+                <%= f.label "Пароль", class: "form__label" %>
+                <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, class: "form__field", placeholder: "Please type"  %>
+            </div>
+            <div class="form__block">
+                <%= f.label "Подтверждение пароль", class: "form__label" %>
+                <%= f.password_field :password_confirmation, class: "form__field", placeholder: "Please type" %>
+            </div>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form__block ccc">
+                <%= f.submit "Sign up", class:"form__btn form__btn_circle form__btn_large" %>
+            </div>
+        <% end %>
+        <div class="form__block rcc">
+            <div class="form__text form__text_small">Already have an account?&nbsp;<b><%= render "devise/shared/links" %></b></div>
         </div>
-        <div class="form__block">
-            <%= f.label :last_name, class: "form__label" %>
-            <%= f.text_field :last_name, autofocus: true,  class: "form__field", placeholder: "Please type"  %>
-        </div>
     </div>
-    <div class="form__block">
-        <%= f.label :email, class: "form__label" %>
-        <%= f.email_field :email, autofocus: true, class: "form__field", placeholder: "Please type"  %>
-    </div>
-    <div class="form__block">
-        <%= f.label :password, class: "form__label" %>
-        <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, class: "form__field", placeholder: "Please type"  %>
-    </div>
-    <div class="form__block">
-        <%= f.label :password_confirmation, class: "form__label" %>
-        <%= f.password_field :password_confirmation, class: "form__field", placeholder: "Please type" %>
-    </div>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="form__block ccc">
-        <%= f.submit "Sign up", class:"form__btn form__btn_circle form__btn_large" %>
-    </div>
-<% end %>
-<div class="form__block rcc">
-    Already have an account?&nbsp;<b><%= render "devise/shared/links" %></b>
 </div>

@@ -1,4 +1,3 @@
-<%= javascript_include_tag('pages/personal_orders_page.js')%>
 <div class="table">
     <h1 class="table__title">Список созданных заказов</h1>
     <ul class="table__list">
@@ -16,7 +15,7 @@
                         <div class="table__price">Сумма: <%= order.amount %> $</div>
                     </div>
                     <%= image_tag("arrow.png", :alt => "arrow.png", :class => "table__side-arrow",
-                        :onClick => "PersonalOrdersPage.toggleOrder(this, #{order.id})".html_safe) %>
+                        :onClick => "personalOrders.toggleOrder(this, #{order.id})".html_safe) %>
                 </div>
                 <div class="personal-orders__content" id=<%= order.id %> >
                     <ul class="personal-orders__items-list clc">

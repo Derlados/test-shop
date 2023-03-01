@@ -17,7 +17,7 @@
                     <div class="items__cart-btn items__cart-btn_inactive">В корзине</div>
                 <% else %>
                     <div id="cart-btn-<%= item.id %>" class="items__cart-btn" 
-                        onclick="cart.quickAddToCart(<%= item.id %>, 'cart-btn-<%= item.id %>')">
+                        onclick="items.quickAddToCart(<%= item.id %>, 'cart-btn-<%= item.id %>')">
                         Купить
                     </div>
                 <% end %>
