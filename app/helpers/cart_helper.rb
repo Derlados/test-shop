@@ -1,3 +1,5 @@
+# Class for management user cart. Cart saves in signed cookies by key CART
+# Cookie data format <<number, number>, ...>. First arg - item_id, second - quantity
 module CartHelper
     def get_cart
         if (!cookies.signed[:CART])

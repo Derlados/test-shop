@@ -36,16 +36,29 @@ class CheckoutPage {
         }
     }
 
+    /**
+     * Delete the item from the cart. If the cart is empty - - redirect to the root page.
+     * @param {number} itemId - item id 
+     */
     async onDeleteItem(itemId) {
         try {
             const data = await cart.deleteFromCart(itemId)
             this._updateTotal(data.total)
             this._deleteItemBlock(itemId);
+
+            if (data.newAmount == 0) {
+                document.location.href = "/";
+            }
         } catch (e) {
             //ignored
         }
     }
 
+    /**
+     * Update a sum price for a particular item 
+     * @param {number} itemId - item id
+     * @param {number} newTotalItem - total price for an item based on quantity
+     */
     _updateItemTotal(itemId, newTotalItem) {
         const totalItemEl = document.getElementById(`${this._CHECKOUT_TOTAL_ITEM_BASE_ID}${itemId}`);
         if (totalItemEl) {

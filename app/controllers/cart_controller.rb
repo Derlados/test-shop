@@ -28,7 +28,6 @@ class CartController < ApplicationController
     private
 
     def validate_new_item
-        
         if (helpers.cart_has_item(params[:id].to_i))
             render json: {message: "in cart already"}, status: 400
         end

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    SUPER_ADMIN_ID = 1
     before_action :is_admin
 
     def index
@@ -7,7 +8,9 @@ class UsersController < ApplicationController
         @transformed_search = params.has_key?(:search) ? @search.downcase : ''; 
         @transformed_search = @transformed_search.delete(' ');
         @users = User.where("lower(concat(first_name, last_name)) LIKE ? ", "%#{@transformed_search}%")
+            .where("id != ?", UsersController::SUPER_ADMIN_ID)
             .order(id: :asc)
+        
     end
 
     def edit 
