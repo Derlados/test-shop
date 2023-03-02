@@ -26,6 +26,6 @@
     </div>
     <div class="form__btns rlc">
         <%= form.submit("Обновить", {:class=> 'form__btn'}) %>
-        <%= link_to "Удалить пользователя", user_path(@user), data: { turbo_method: :delete }, :class => 'form__btn form__btn_red' %>
+        <%= link_to "Удалить польз.", user_path(@user), data: { turbo_method: :delete }, :class => 'form__btn form__btn_red' %>
     </div>
 <% end %>
